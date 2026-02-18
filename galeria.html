@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Galería</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
+body{color:#fff;overflow-x:hidden}
+#p5-container{position:fixed;inset:0;z-index:0}
+.content{position:relative;z-index:2;min-height:100vh;background:rgba(0,0,0,.55);
+backdrop-filter:blur(6px);padding:2rem}
+nav{display:flex;justify-content:center;gap:1rem;margin-bottom:1rem}
+nav a{color:#fff;text-decoration:none;border:1px solid #fff;padding:.4rem .8rem;border-radius:6px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+img{width:100%;border-radius:12px}
+</style>
+</head>
+<body>
+<div id="p5-container"></div>
+<div class="content">
+<h1>Galería</h1>
+<nav>
+<a href="index.html">Inicio</a>
+<a href="galeria.html">Galería</a>
+<a href="contacto.html">Contacto</a>
+</nav>
+<div class="gallery">
+<img src="https://picsum.photos/400/300?1">
+<img src="https://picsum.photos/400/300?2">
+<img src="https://picsum.photos/400/300?3">
+</div>
+</div>
+<script>
+function setup(){let c=createCanvas(windowWidth,windowHeight);c.parent("p5-container")}
+function draw(){background(15,25,40,120)}
+</script>
+</body>
+</html>

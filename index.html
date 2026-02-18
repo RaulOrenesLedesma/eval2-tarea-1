@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Web con Canvas interactivo P5.js</title>
+
+  <meta name="description" content="Ejemplo de integración de una web HTML5 con un canvas interactivo desarrollado en P5.js.">
+  <meta name="keywords" content="HTML5, Canvas, P5js, interacción, diseño web">
+  <meta name="author" content="Proyecto educativo">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
+  <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+
+  <div id="p5-container"></div>
+
+  <div class="content">
+    <header>
+      <h1>Web + Canvas interactivo</h1>
+      <p>HTML5 integrado con P5.js</p>
+    </header>
+
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="galeria.html">Galería</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <main>
+      <section>
+        <img src="https://picsum.photos/400/250?1" alt="Imagen">
+        <h3>Fotos</h3>
+        <p>fondo animado.</p>
+      </section>
+
+      <section>
+        <h3>Formulario</h3>
+        <form>
+          <input type="text" placeholder="Nombre">
+          <input type="email" placeholder="Email">
+          <textarea rows="4" placeholder="Mensaje"></textarea>
+          <button type="button">Enviar</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>Proyecto educativo · P5.js</footer>
+  </div>
+
+  <script>
+    /*
+      Inspirado en sketches de partículas interactivas de OpenProcessing.org
+      Modificado: atracción al ratón y color dinámico
+    */
+
+    let particles = [];
+
+    function setup() {
+      const c = createCanvas(windowWidth, windowHeight);
+      c.parent("p5-container");
+      for (let i = 0; i < 120; i++) particles.push(new Particle());
+    }
+
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+    }
+
+    function draw() {
+      background(10, 15, 30, 120);
+      for (let p of particles) {
+        p.update();
+        p.show();
+      }
+    }
+
+    class Particle {
+      constructor() {
+        this.pos = createVector(random(width), random(height));
+        this.vel = p5.Vector.random2D();
+        this.size = random(2, 5);
+      }
+
+      update() {
+        let m = createVector(mouseX, mouseY);
+        let d = p5.Vector.sub(m, this.pos);
+        if (d.mag() < 200) {
+          d.normalize().mult(0.4);
+          this.vel.add(d);
+        }
+        this.pos.add(this.vel);
+        this.vel.mult(0.98);
+        if (this.pos.x<0||this.pos.x>width) this.vel.x*=-1;
+        if (this.pos.y<0||this.pos.y>height) this.vel.y*=-1;
+      }
+
+      show() {
+        noStroke();
+        fill(100 + this.pos.x % 155, 160, 255);
+        circle(this.pos.x, this.pos.y, this.size);
+      }
+    }
+  </script>
+</body>
+</html>

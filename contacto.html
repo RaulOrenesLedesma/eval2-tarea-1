@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Contacto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
+body{color:#fff;overflow-x:hidden}
+#p5-container{position:fixed;inset:0;z-index:0}
+.content{position:relative;z-index:2;min-height:100vh;background:rgba(0,0,0,.55);
+backdrop-filter:blur(6px);padding:2rem}
+nav{display:flex;justify-content:center;gap:1rem;margin-bottom:1rem}
+nav a{color:#fff;text-decoration:none;border:1px solid #fff;padding:.4rem .8rem;border-radius:6px}
+form{background:rgba(255,255,255,.1);padding:1rem;border-radius:12px;
+display:flex;flex-direction:column;gap:.5rem}
+input,textarea,button{padding:.5rem;border-radius:6px;border:none}
+button{background:#ff5252;color:#fff}
+</style>
+</head>
+<body>
+<div id="p5-container"></div>
+<div class="content">
+<h1>Contacto</h1>
+<nav>
+<a href="index.html">Inicio</a>
+<a href="galeria.html">Galería</a>
+<a href="contacto.html">Contacto</a>
+</nav>
+<form>
+<input placeholder="Nombre">
+<input type="email" placeholder="Email">
+<textarea placeholder="Mensaje"></textarea>
+<button type="button">Enviar</button>
+</form>
+</div>
+<script>
+function setup(){let c=createCanvas(windowWidth,windowHeight);c.parent("p5-container")}
+function draw(){background(20,30,50,120)}
+</script>
+</body>
+</html>
